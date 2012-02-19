@@ -16,5 +16,9 @@ Implement active/inactive links
 Group publishers by parents on index page
 Rename AR class
 DRY something
+Import deal info from big CSV
+ - include errors
+ Change prices to decimals
+ Make deals use Textile
 
 Add Timecop to Gem

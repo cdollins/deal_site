@@ -3,6 +3,10 @@ DealSite::Application.routes.draw do
     resource :publisher
   end
 
+  resources :deals do
+    resource :advertiser
+  end
+
   resources :publishers do
     resources :advertisers
   end

@@ -1,4 +1,5 @@
 class Advertiser < ActiveRecord::Base
+  has_many :deals
   belongs_to :publisher
 
   validates_presence_of :name
