@@ -5,7 +5,9 @@
     <th>Proposition</th>
     <th>Value</th>
     <th>Price</th>
-    <th>description</th>
+    <th>Description</th>
+    <th>Advertiser</th>
+    <th>Publisher</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,6 +19,8 @@
     <td><%= deal.value %></td>
     <td><%= deal.price %></td>
     <td><%= deal.description %></td>
+    <td><%= deal.advertiser.name %></td>
+    <td><%= deal.advertiser.publisher.try(:parent).try(:name) %> <%= deal.advertiser.publisher.name %></td>
     <td><%= link_to 'Show', deal %></td>
     <td><%= link_to 'Edit', edit_deal_path(deal) %></td>
     <td><%= link_to 'Destroy', deal, confirm: 'Are you sure?', method: :delete %></td>
