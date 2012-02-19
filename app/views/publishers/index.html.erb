@@ -1,5 +1,11 @@
-<table class="publishers">
+<table class="publishers table-striped">
+  <thead>
+    <th>Name</th>
+    <th>Label</th>
+    <th/>
+    <th/>
+  </thead>
   <tbody>
-<%= render @publishers %>
+<%= render @publishers.sort_by(&:name) %>
   </tbody>
 </table>

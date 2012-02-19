@@ -12,5 +12,9 @@ Troubleshoot themed view problems
 Make destroy remote
 SEO-friendly route?
 Add Airbrake?
+Implement active/inactive links
+Group publishers by parents on index page
+Rename AR class
+DRY something
 
 Add Timecop to Gem
