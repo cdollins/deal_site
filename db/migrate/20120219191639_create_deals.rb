@@ -6,7 +6,8 @@ class CreateDeals < ActiveRecord::Migration
       t.integer :price
       t.integer :advertiser_id
       t.text :description
-      t.datetime :expires_at
+      t.datetime :start_at
+      t.datetime :end_at
       t.boolean :sold_out
 
       t.timestamps

@@ -26,7 +26,8 @@ ActiveRecord::Schema.define(:version => 20120219191639) do
     t.integer  "price"
     t.integer  "advertiser_id"
     t.text     "description"
-    t.datetime "expires_at"
+    t.datetime "start_at"
+    t.datetime "end_at"
     t.boolean  "sold_out"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
