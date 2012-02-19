@@ -11,14 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120216002740) do
+ActiveRecord::Schema.define(:version => 20120219181734) do
+
+  create_table "advertisers", :force => true do |t|
+    t.string   "name"
+    t.integer  "publisher_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "publishers", :force => true do |t|
     t.string   "name"
     t.string   "label"
     t.integer  "parent_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "publishers", ["parent_id"], :name => "index_publishers_on_parent_id"

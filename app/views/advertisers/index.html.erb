@@ -1,0 +1,23 @@
+<h1><%= @publisher.name %> Advertisers</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Belongs to</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @advertisers.each do |advertiser| %>
+  <tr>
+    <td><%= advertiser.name %></td>
+    <td><%= link_to 'Edit', edit_advertiser_path(advertiser) %></td>
+    <td><%= link_to 'Destroy', advertiser, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Advertiser', new_publisher_advertiser_path(@publisher) %>
