@@ -25,6 +25,7 @@ class DealsControllerTest < ActionController::TestCase
   test "should show deal" do
     get :show, id: FactoryGirl.create(:deal).to_param
     assert_response :success
+    assert_template "layouts/deals/show"
   end
 
   test "should get edit" do
