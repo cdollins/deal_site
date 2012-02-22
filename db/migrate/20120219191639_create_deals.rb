@@ -5,6 +5,7 @@ class CreateDeals < ActiveRecord::Migration
       t.integer :value
       t.integer :price
       t.integer :advertiser_id
+      t.integer :inventory, :default => 10, :null => false
       t.text :description
       t.datetime :start_at
       t.datetime :end_at

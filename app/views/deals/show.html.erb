@@ -1,24 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Proposition:</b>
-  <%= @deal.proposition %>
-</p>
+<h1><%= @deal.proposition %></h1>
+
+<h2>$<%= @deal.value %> Value for Only $<%= @deal.price %></h2>
+
+<h3>Deal ends at <%= @deal.end_at.to_s(:long) %></h3>
 
 <p>
-  <b>Value:</b>
-  <%= @deal.value %>
-</p>
-
-<p>
-  <b>Price:</b>
-  <%= @deal.price %>
-</p>
-
-<p>
-  <b>description:</b>
   <%= @deal.description %>
 </p>
 
-
-<%= link_to 'Edit', edit_deal_path(@deal) %>
+<h3>Only <%= @deal.inventory %> Left</h3>
