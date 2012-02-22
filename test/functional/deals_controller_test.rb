@@ -28,6 +28,14 @@ class DealsControllerTest < ActionController::TestCase
     assert_template "layouts/deals/show"
   end
 
+  test "should use themed template to show deal" do
+    publisher = FactoryGirl.create(:publisher, label: "wcax")
+    advertiser = FactoryGirl.create(:advertiser, publisher: publisher)
+    get :show, id: FactoryGirl.create(:deal, advertiser: advertiser).to_param
+    assert_response :success
+    assert_select "h1", text: "WCAX Deal of the Day"
+  end
+
   test "should get edit" do
     get :edit, id: FactoryGirl.create(:deal).to_param
     assert_response :success

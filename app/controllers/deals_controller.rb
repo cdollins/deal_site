@@ -1,11 +1,12 @@
 class DealsController < ApplicationController
+  before_filter :assign_deal, only: [ :show, :edit, :update, :destroy ]
+  before_filter :set_view_paths, only: :show
+
   def index
     @deals = Deal.all
   end
 
   def show
-    @deal = Deal.find(params[:id])
-
     respond_to do |format|
       format.html { render layout: "deals/show" }
       format.json { render json: @deal }
@@ -15,10 +16,6 @@ class DealsController < ApplicationController
   def new
     @advertiser = Advertiser.find(params[:advertiser_id])
     @deal = @advertiser.deals.build
-  end
-
-  def edit
-    @deal = Deal.find(params[:id])
   end
 
   def create
@@ -32,8 +29,6 @@ class DealsController < ApplicationController
   end
 
   def update
-    @deal = Deal.find(params[:id])
-
     if @deal.update_attributes(params[:deal])
       redirect_to @deal, notice: 'Deal was successfully updated.'
     else
@@ -42,9 +37,18 @@ class DealsController < ApplicationController
   end
 
   def destroy
-    @deal = Deal.find(params[:id])
     @deal.destroy
-
     redirect_to deals_url
+  end
+
+
+  protected
+
+  def assign_deal
+    @deal = Deal.find(params[:id])
+  end
+
+  def set_view_paths
+    prepend_view_path "app/views/themes/#{@deal.advertiser.publisher.label}"
   end
 end
