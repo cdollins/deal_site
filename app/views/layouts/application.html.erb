@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="utf-8">
   <title>Deal Site</title>
  
   <!--[if lt IE 9]>
@@ -8,7 +9,7 @@
   <![endif]-->
 
 
-  <%= stylesheet_link_tag    "bootstrap.min", :media => "all" %>
+  <%= stylesheet_link_tag    "bootstrap", :media => "all" %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tag %>
@@ -20,17 +21,24 @@
 
 </head>
 <body>
-    <div class="topbar">
-      <div class="fill">
-        <div class="container">
-          <a class="brand" href="/">Home</a>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="/">Home</a>
+        <div class="nav-collapse">
           <ul class="nav">
             <li><a href="/">Publishers</a></li>
             <li><a href="/deals">Deals</a></li>
           </ul>
-        </div>
+        </div><!--/.nav-collapse -->
       </div>
     </div>
+  </div>
 
     <div class="container">
       <% if flash[:warn].present? %>
