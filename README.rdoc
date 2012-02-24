@@ -20,6 +20,7 @@ Import deal info from big CSV
  - include errors
  Change prices to decimals
  Make deals use Textile
+ savings hard-coded—implement
 
  JS Errors on non-deal pages
 
