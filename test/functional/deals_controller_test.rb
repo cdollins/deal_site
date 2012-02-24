@@ -33,7 +33,7 @@ class DealsControllerTest < ActionController::TestCase
     advertiser = FactoryGirl.create(:advertiser, publisher: publisher)
     get :show, id: FactoryGirl.create(:deal, advertiser: advertiser).to_param
     assert_response :success
-    assert_select "h1", text: "WCAX Deal of the Day"
+    assert_select "h1", text: "Jump On It"
   end
 
   test "should get edit" do
