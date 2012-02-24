@@ -1,11 +1,21 @@
 entertainment = Publisher.create!(name: "Entertainment", label: "entertainment")
-entertainment.publishers.create!(name: "Boston", label: "entertainment-boston")
+entertainment_boston = entertainment.publishers.create!(name: "Boston", label: "entertainment-boston")
 entertainment.publishers.create!(name: "New York", label: "entertainment-new-york")
 entertainment.publishers.create!(name: "Chicago", label: "entertainment-chicago")
 entertainment_pdx = entertainment.publishers.create!(name: "Portland", label: "entertainment-pdx")
 
 Publisher.create!(name: "OC Register", label: "oc-register")
 wcax = Publisher.create!(name: "WCAX", label: "wcax")
+
+advertiser = entertainment_boston.advertisers.create!(name: "Au Bon Pain")
+advertiser.deals.create!(
+  proposition: "Mediocre coffee with free mediocre pastry",
+  value: 10,
+  price: 5,
+  description: "Drink coffee in Cambridge",
+  start_at: 1.day.ago,
+  end_at: 1.week.from_now
+)
 
 advertiser = entertainment_pdx.advertisers.create!(name: "Hot Lips Pizza")
 advertiser.deals.create!(

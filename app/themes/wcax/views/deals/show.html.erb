@@ -50,7 +50,7 @@
       </div><!-- END #dashboard_top -->
       <div id="timer">
         <div id="time_left_to_buy">
-          <%= distance_of_time_in_words Time.zone.now, @deal.end_at %> to go
+          Only <span class="inventory"><%= @deal.inventory %></span> Left
         </div>
       </div><!-- END #dashboard_bottom -->
     </div><!-- END #deal_dashboard -->
