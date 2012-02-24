@@ -21,4 +21,6 @@ Import deal info from big CSV
  Change prices to decimals
  Make deals use Textile
 
+ JS Errors on non-deal pages
+
 Add Timecop to Gem
