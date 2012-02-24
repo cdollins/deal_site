@@ -19,7 +19,7 @@ class DealsControllerTest < ActionController::TestCase
       post :create, deal: FactoryGirl.attributes_for(:deal), :advertiser_id => FactoryGirl.create(:advertiser).id
     end
 
-    assert_redirected_to deal_path(assigns(:deal))
+    assert_redirected_to edit_deal_path(assigns(:deal))
   end
 
   test "should show deal" do
@@ -44,7 +44,7 @@ class DealsControllerTest < ActionController::TestCase
   test "should update deal" do
     deal = FactoryGirl.create(:deal)
     put :update, id: deal, deal: { price: 30 }
-    assert_redirected_to deal_path(deal)
+    assert_redirected_to edit_deal_path(deal)
   end
 
   test "should destroy deal" do

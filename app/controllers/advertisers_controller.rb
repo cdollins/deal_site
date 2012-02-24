@@ -17,7 +17,7 @@ class AdvertisersController < ApplicationController
     @advertiser = Advertiser.new(params[:advertiser])
 
     if @advertiser.save
-      redirect_to @advertiser, notice: 'Advertiser was successfully created.'
+      redirect_to edit_advertiser_path(@advertiser), notice: 'Advertiser was successfully created.'
     else
       render action: "new"
     end
@@ -27,7 +27,7 @@ class AdvertisersController < ApplicationController
     @advertiser = Advertiser.find(params[:id])
 
     if @advertiser.update_attributes(params[:advertiser])
-      redirect_to @advertiser, notice: 'Advertiser was successfully updated.'
+      redirect_to edit_advertiser_path(@advertiser), notice: 'Advertiser was successfully updated.'
     else
       render action: "edit"
     end

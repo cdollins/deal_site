@@ -22,7 +22,7 @@ class DealsController < ApplicationController
     @advertiser = Advertiser.find(params[:advertiser_id])
     @deal = @advertiser.deals.build(params[:deal])
     if @deal.save
-      redirect_to @deal, notice: 'Deal was successfully created.'
+      redirect_to edit_deal_path(@deal), notice: 'Deal was successfully created.'
     else
       render action: "new"
     end
@@ -30,7 +30,7 @@ class DealsController < ApplicationController
 
   def update
     if @deal.update_attributes(params[:deal])
-      redirect_to @deal, notice: 'Deal was successfully updated.'
+      redirect_to edit_deal_path(@deal), notice: 'Deal was successfully updated.'
     else
       render action: "edit"
     end

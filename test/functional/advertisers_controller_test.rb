@@ -25,7 +25,7 @@ class AdvertisersControllerTest < ActionController::TestCase
       post :create, advertiser: FactoryGirl.attributes_for(:advertiser, publisher_id: publisher.id)
     end
 
-    assert_redirected_to advertiser_path(assigns(:advertiser))
+    assert_redirected_to edit_advertiser_path(assigns(:advertiser))
   end
 
   test "should get edit" do
@@ -37,7 +37,7 @@ class AdvertisersControllerTest < ActionController::TestCase
   test "should update advertiser" do
     advertiser = FactoryGirl.create(:advertiser)
     put :update, id: advertiser, advertiser: advertiser.attributes
-    assert_redirected_to advertiser_path(assigns(:advertiser))
+    assert_redirected_to edit_advertiser_path(assigns(:advertiser))
   end
 
   test "should destroy advertiser" do
