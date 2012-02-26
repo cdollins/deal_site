@@ -1,27 +1,12 @@
-JS prob requiring browser test
-unit test that fails sometimes on second boundaries
-slow tests
-No error message when dupe name saved—should be scoped by pub
-Bad SQL
-Convert bad Ruby query to good SQL and add index
- - advertiser index page?
-Joins?
-CSS?
-Data-driven bug
-Troubleshoot themed view problems
-Make destroy remote
-SEO-friendly route?
-Add Airbrake?
-Implement active/inactive links
-Group publishers by parents on index page
-Rename AR class
-DRY something
-Import deal info from big CSV
- - include errors
- Change prices to decimals
- Make deals use Textile
- savings hard-coded—implement
+This is a Ruby 1.9, Rails 3.2 application.
 
- JS Errors on non-deal pages
+If you have Ruby 1.9 and bundler installed, all you should need to do is:
 
-Add Timecop to Gem
+bundle
+rake db:seed
+rails s
+
+Use 'rake' to run tests.
+
+Questions?
+dev@analoganalytics.com
