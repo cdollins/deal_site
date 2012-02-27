@@ -15,4 +15,5 @@ gem 'jquery-rails'
 group :test do
   gem "factory_girl"
   gem "factory_girl_rails"
+  gem "timecop"
 end
