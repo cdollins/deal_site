@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20120219191639) do
 
   create_table "publishers", :force => true do |t|
     t.string   "name"
-    t.string   "label"
+    t.string   "theme"
     t.integer  "parent_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

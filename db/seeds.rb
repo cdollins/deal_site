@@ -1,11 +1,11 @@
-entertainment = Publisher.create!(name: "Entertainment", label: "entertainment")
-entertainment_boston = entertainment.publishers.create!(name: "Boston", label: "entertainment-boston")
-entertainment.publishers.create!(name: "New York", label: "entertainment-new-york")
-entertainment.publishers.create!(name: "Chicago", label: "entertainment-chicago")
-entertainment_pdx = entertainment.publishers.create!(name: "Portland", label: "entertainment-pdx")
+entertainment = Publisher.create!(name: "Entertainment", theme: "entertainment")
+entertainment_boston = entertainment.publishers.create!(name: "Boston", theme: "entertainment-boston")
+entertainment.publishers.create!(name: "New York", theme: "entertainment-new-york")
+entertainment.publishers.create!(name: "Chicago", theme: "entertainment-chicago")
+entertainment_pdx = entertainment.publishers.create!(name: "Portland", theme: "entertainment-pdx")
 
-Publisher.create!(name: "OC Register", label: "oc-register")
-wcax = Publisher.create!(name: "WCAX", label: "wcax")
+Publisher.create!(name: "OC Register", theme: "oc-register")
+wcax = Publisher.create!(name: "WCAX", theme: "wcax")
 
 advertiser = entertainment_boston.advertisers.create!(name: "Au Bon Pain")
 advertiser.deals.create!(
