@@ -11,3 +11,7 @@
 <%= render @publishers.sort_by(&:name) %>
   </tbody>
 </table>
+
+<p>
+  <%= link_to "New Publisher", new_publisher_path %>
+</p>
