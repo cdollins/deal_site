@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '~>3.2.1'
 
 gem 'sqlite3'
 
@@ -16,4 +16,6 @@ group :test do
   gem "factory_girl"
   gem "factory_girl_rails"
   gem "timecop"
+  gem 'ruby-prof'
+  gem 'test-unit'
 end
