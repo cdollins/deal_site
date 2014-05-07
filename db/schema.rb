@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120219191639) do
+ActiveRecord::Schema.define(:version => 20140507024939) do
 
   create_table "advertisers", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20120219191639) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  add_index "advertisers", ["publisher_id"], :name => "index_advertisers_on_publisher_id"
 
   create_table "deals", :force => true do |t|
     t.string   "proposition"
