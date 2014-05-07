@@ -24,9 +24,9 @@
       <td><%= deal.description %></td>
       <td><%= deal.advertiser.name %></td>
       <td><%= deal.advertiser.publisher.try(:parent).try(:name) %> <%= deal.advertiser.publisher.name %></td>
-      <td><%= link_to 'Show', deal %></td>
-      <td><%= link_to 'Edit', edit_deal_path(deal) %></td>
-      <td><%= link_to 'Destroy', deal, confirm: 'Are you sure?', method: :delete %></td>
+      <td><%= link_to 'Show', "/deals/#{deal.to_param}" %></td>
+      <td><%= link_to 'Edit', "/deals/#{deal.to_param}/edit" %></td>
+      <td><%= link_to 'Destroy', "/deals/#{deal.to_param}", confirm: 'Are you sure?', method: :delete %></td>
     </tr>
   <% end %>
   </tbody>
