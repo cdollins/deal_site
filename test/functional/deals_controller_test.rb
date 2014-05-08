@@ -35,6 +35,43 @@ class DealsControllerTest < ActionController::TestCase
     assert_response :success
     assert_select "h1", text: "Jump On It"
   end
+  
+  test "should use themed template to show Chicago" do
+    publisher = FactoryGirl.create(:publisher, theme: "entertainment-chicago")
+    advertiser = FactoryGirl.create(:advertiser, publisher: publisher)
+    get :show, id: FactoryGirl.create(:deal, advertiser: advertiser).to_param
+    assert_response :success
+    assert_select "a", text: "Entertainment Chicago Deal of the Day"
+    assert_select "footer", text: "Entertainment Chicago Deal of the Day"
+  end 
+  
+
+  test "should use themed template to show NY" do
+    publisher = FactoryGirl.create(:publisher, theme: "entertainment-new-york")
+    advertiser = FactoryGirl.create(:advertiser, publisher: publisher)
+    get :show, id: FactoryGirl.create(:deal, advertiser: advertiser).to_param
+    assert_response :success
+    assert_select "a", text: "Entertainment New York Deal of the Day"
+    assert_select "footer", text: "Entertainment New York Deal of the Day"
+  end
+  
+  test "should use themed template to show Boston" do
+    publisher = FactoryGirl.create(:publisher, theme: "entertainment-boston")
+    advertiser = FactoryGirl.create(:advertiser, publisher: publisher)
+    get :show, id: FactoryGirl.create(:deal, advertiser: advertiser).to_param
+    assert_response :success
+    assert_select "a", text: "Entertainment Boston Deal of the Day"
+    assert_select "footer", text: "Entertainment Boston Deal of the Day"
+  end
+  
+  test "should use themed template to show PDX" do
+    publisher = FactoryGirl.create(:publisher, theme: "entertainment-pdx")
+    advertiser = FactoryGirl.create(:advertiser, publisher: publisher)
+    get :show, id: FactoryGirl.create(:deal, advertiser: advertiser).to_param
+    assert_response :success
+    assert_select "a", text: "Entertainment Portland Deal of the Day"
+    assert_select "footer", text: "Entertainment Portland Deal of the Day"
+  end
 
   test "should get edit" do
     get :edit, id: FactoryGirl.create(:deal).to_param
