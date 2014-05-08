@@ -12,4 +12,7 @@ class Publisher < ActiveRecord::Base
     end
     true
   end
+  
+  def self.import(import, mapping)
+  end
 end
