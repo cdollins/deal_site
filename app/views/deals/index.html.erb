@@ -19,7 +19,6 @@
   <tbody>
 
 	  <% @deals.each do |deal| %>
-	  	<% cache(deal) do %>
 		    <tr>
 		      <td><%= deal.proposition %></td>
 		      <td><%= deal.value %></td>
@@ -32,7 +31,6 @@
 		      <td><%= link_to 'Destroy', "/deals/#{deal.to_param}", confirm: 'Are you sure?', method: :delete %></td>
 		    </tr>
 		<% end %>
-	  <% end %>
   </tbody>
   <% end %>
 </table>
