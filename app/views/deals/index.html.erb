@@ -15,21 +15,26 @@
     </tr>
   </thead>
 
+  <% cache(cache_key_for_deals) do %>
   <tbody>
-  <% @deals.each do |deal| %>
-    <tr>
-      <td><%= deal.proposition %></td>
-      <td><%= deal.value %></td>
-      <td><%= deal.price %></td>
-      <td><%= deal.description %></td>
-      <td><%= deal.advertiser.name %></td>
-      <td><%= deal.advertiser.publisher.try(:parent).try(:name) %> <%= deal.advertiser.publisher.name %></td>
-      <td><%= link_to 'Show', "/deals/#{deal.to_param}" %></td>
-      <td><%= link_to 'Edit', "/deals/#{deal.to_param}/edit" %></td>
-      <td><%= link_to 'Destroy', "/deals/#{deal.to_param}", confirm: 'Are you sure?', method: :delete %></td>
-    </tr>
-  <% end %>
+
+	  <% @deals.each do |deal| %>
+	  	<% cache(deal) do %>
+		    <tr>
+		      <td><%= deal.proposition %></td>
+		      <td><%= deal.value %></td>
+		      <td><%= deal.price %></td>
+		      <td><%= deal.description %></td>
+		      <td><%= deal.advertiser.name %></td>
+		      <td><%= deal.advertiser.publisher.try(:parent).try(:name) %> <%= deal.advertiser.publisher.name %></td>
+		      <td><%= link_to 'Show', "/deals/#{deal.to_param}" %></td>
+		      <td><%= link_to 'Edit', "/deals/#{deal.to_param}/edit" %></td>
+		      <td><%= link_to 'Destroy', "/deals/#{deal.to_param}", confirm: 'Are you sure?', method: :delete %></td>
+		    </tr>
+		<% end %>
+	  <% end %>
   </tbody>
+  <% end %>
 </table>
 
 <br />
