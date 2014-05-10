@@ -1,19 +1,17 @@
 namespace :publisher do
-
-  namespace :import do
-  end
   
-  desc "Perform data import (options: IMPORT=/path/to/data_directory), MAPPER=MapperClassName"
+  desc "Perform data import (options: PUBLISHER=name IMPORT=/path/to/data_directory), MAPPER=MapperClassName"
   task :import => :environment do
-    if ENV['IMPORT'].nil?
-      p "IMPORT option required"
-      exit 1
-    end
+		raise ArgumentError, 'You must specify a valid file path to the import data.' unless File.exists?(ENV['IMPORT'])
+		raise ArgumentError, 'Please specify the publisher name.' unless ENV['PUBLISHER']
+
     if ENV['MAPPER'].nil?
-      Publisher.import(ENV['IMPORT'], "TestImportMap")
+      mapper = TestImportMap
     else
-      Publisher.import(ENV['IMPORT'], ENV['MAPPER'])
+      mapper = ENV['MAPPER'].constantize
     end
+    
+    Importer.import(ENV['PUBLISHER'], File.new(ENV['IMPORT']), mapper)
   end
   
 end
