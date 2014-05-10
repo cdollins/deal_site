@@ -1,5 +1,6 @@
 class Deal < ActiveRecord::Base
   belongs_to :advertiser
+  has_many :issues
 
   validates_presence_of :advertiser, :value, :price, :description, :start_at, :end_at
   validate :end_at_can_not_be_before_start_at

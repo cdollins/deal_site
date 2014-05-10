@@ -1,6 +1,7 @@
 class Import < ActiveRecord::Base
   belongs_to :publisher
   has_many :import_errors
+  has_many :issues
   
   def import(import_data)
     mapper = import_map.constantize.new
@@ -14,7 +15,12 @@ class Import < ActiveRecord::Base
         else
           options = mapper.data_row_parser(row, headers)
           advertiser = Advertiser.where(name: options[:name]).first_or_create(name: options.delete(:name), publisher: publisher)
-          Deal.create(options.merge(advertiser: advertiser))
+          deal = Deal.new(options.merge(advertiser: advertiser))
+          deal.save(validate: false)
+          if !deal.valid?
+            Issue.create(deal: deal, publisher: publisher, import: self)
+          end
+
         end
       rescue => e
         ImportError.create(data: row, error: e.to_s, import: self)

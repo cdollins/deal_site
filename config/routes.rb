@@ -1,4 +1,6 @@
 DealSite::Application.routes.draw do
+  resources :issues
+
   resources :import_errors do
     resource :import
   end
