@@ -4,6 +4,12 @@ class DealTest < ActiveSupport::TestCase
   test "factory should be sane" do
     assert FactoryGirl.build(:deal).valid?
   end
+  
+  test "offer can not expire before it begins" do
+    deal = FactoryGirl.build(:deal)
+    deal.end_at = deal.start_at - 1.week
+    assert !deal.valid?
+  end
 
   test "over should honor current time" do
     now = Time.zone.now

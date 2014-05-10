@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Import map:</b>
+  <%= @import.import_map %>
+</p>
+
+<p>
+  <b>Publisher:</b>
+  <%= @import.publisher_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_import_path(@import) %> |
+<%= link_to 'Back', imports_path %>

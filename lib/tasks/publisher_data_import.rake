@@ -6,12 +6,12 @@ namespace :publisher do
 		raise ArgumentError, 'Please specify the publisher name.' unless ENV['PUBLISHER']
 
     if ENV['MAPPER'].nil?
-      mapper = TestImportMap
+      mapper = TestImportMap.name
     else
-      mapper = ENV['MAPPER'].constantize
+      mapper = ENV['MAPPER']
     end
     
-    Importer.import(ENV['PUBLISHER'], File.new(ENV['IMPORT']), mapper)
+    Import.import(ENV['PUBLISHER'], File.new(ENV['IMPORT']), mapper)
   end
   
 end

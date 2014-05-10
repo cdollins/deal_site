@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  publisher_id: 
+  import_id: 1
+  deal_id: 1
+  message: MyString
+
+two:
+  publisher_id: 
+  import_id: 1
+  deal_id: 1
+  message: MyString

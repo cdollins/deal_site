@@ -13,6 +13,6 @@ module DealSite
     config.assets.enabled = true
     config.assets.version = '1.0'
     config.assets.paths << Rails.root.join("app", "themes")
-    config.autoload_paths += %W(#{config.root}/app/services #{config.root}/lib/import_map)
+    config.autoload_paths += %W(#{config.root}/lib/import_map)
   end
 end
