@@ -38,6 +38,8 @@ END
     assert_equal 10, Deal.all.first.start_at.month 
     assert_equal 2, Deal.all.first.start_at.day
     assert_equal 2011, Deal.all.first.start_at.year
+    assert_equal 1, Import.all.count
+    assert_equal 1, ImportError.all.count
   end
   
   
@@ -55,6 +57,8 @@ END
     assert_equal 10, Deal.all.first.start_at.month 
     assert_equal 2, Deal.all.first.start_at.day 
     assert_equal 2011, Deal.all.first.start_at.year
+    assert_equal 1, Import.all.count
+    assert_equal 1, ImportError.all.count
   end
   
 
