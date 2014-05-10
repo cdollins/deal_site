@@ -12,7 +12,18 @@ class TestImportMap < ImportMap
       "Value" => :value
     }
   end
-    
+  
+  def field_transforms
+    {
+      name: ->(x) {x},
+      start_at: ->(x) { Date.strptime(x, "%m/%d/%Y") },
+      end_at: ->(x) { Date.strptime(x, "%m/%d/%Y") },
+      description: ->(x) {x},
+      price: ->(x) {x},
+      value: ->(x) {x}
+    }
+  end
+      
   def header_parse_regex
     /\s+/
   end
