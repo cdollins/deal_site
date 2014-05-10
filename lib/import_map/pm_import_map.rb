@@ -3,8 +3,7 @@ class PmImportMap < ImportMap
   protected
   
   def header_transforms
-    #Publisher  Start  finish  Name  cost margin
-    @header_transform = {
+    {
       "Publisher" => :name,
       "Start" => :start_at,
       "finish" => :end_at,
@@ -13,13 +12,21 @@ class PmImportMap < ImportMap
       "margin" => :value
     }
   end
-  
-  def publisher_name_from_file_path_regex
-    /^\d_(.+)/
+    
+    
+  def field_transforms
+    {
+      name: ->(x) {x},
+      start_at: ->(x) { Date.strptime(x, "%m-%d-%Y") },
+      end_at: ->(x) { Date.strptime(x, "%m-%d-%Y") },
+      description: ->(x) {x},
+      price: ->(x) {x},
+      value: ->(x) {x}
+    }
   end
     
   def header_parse_regex
-    /(.+),(.+),(.+),(.+),(.+),(.+)/
+    /,/
   end
   
   def field_parse_regex

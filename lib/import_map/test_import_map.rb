@@ -3,7 +3,7 @@ class TestImportMap < ImportMap
   protected
   
   def header_transforms
-    @header_transform = {
+    {
       "Merchant" => :name,
       "Date" => :start_at,
       "Ends" => :end_at,
@@ -13,10 +13,17 @@ class TestImportMap < ImportMap
     }
   end
   
-  def publisher_name_from_file_path_regex
-    /(.+).export.txt/
+  def field_transforms
+    {
+      name: ->(x) {x},
+      start_at: ->(x) { Date.strptime(x, "%m/%d/%Y") },
+      end_at: ->(x) { Date.strptime(x, "%m/%d/%Y") },
+      description: ->(x) {x},
+      price: ->(x) {x},
+      value: ->(x) {x}
+    }
   end
-    
+      
   def header_parse_regex
     /\s+/
   end

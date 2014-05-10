@@ -1,27 +1,32 @@
 class ImportMap
   
-  def initialize
-    header_transforms
-  end
-  
-  def publisher_name_from_file_path_parser(import_path)
-    import_file = Pathname.new(import_path)
-    import_file.basename.to_s =~ publisher_name_from_file_path_regex
-    $1.split("_").map(&:capitalize).join(" ")
-  end
-  
   def header_row_parser(header_string)
-    @headers = header_string.chomp.match(header_parse_regex).captures
+    header_string.strip.split(header_parse_regex)
   end
   
-  def data_row_parser(row_string)
+  def data_row_parser(row_string, headers)
     row = row_string.match(field_parse_regex).captures
-        p @headers
-    hsh = Hash[@headers.zip(row)]
-    Hash[hsh.map {|k, v| [@header_transform[k], v.strip] }]
+    hsh = Hash[headers.zip(row)]
+    Hash[hsh.map {|k, v| [header_transforms[k], get_transform(k).call(v.strip)] }]
   end
   
   protected
+  
+  def get_transform(key)
+    field_transforms[header_transforms[key]]
+  end
+  
+  #default noop transforms  
+  def field_transforms
+    {
+      name: ->(x) {x},
+      start_at: ->(x) {x},
+      end_at: ->(x) {x},
+      description: ->(x) {x},
+      price: ->(x) {x},
+      value: ->(x) {x}
+    }
+  end
   
   def header_transforms
     raise NotImplementedError
