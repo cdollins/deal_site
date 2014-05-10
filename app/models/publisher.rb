@@ -3,6 +3,7 @@ class Publisher < ActiveRecord::Base
   has_many   :advertisers
   belongs_to :parent, class_name: "Publisher"
   has_many   :publishers, foreign_key: :parent_id
+  has_many   :imports
   validates  :name, :uniqueness => true
 
   validate :parent_is_another_publisher

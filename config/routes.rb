@@ -1,4 +1,8 @@
 DealSite::Application.routes.draw do
+  resources :import_errors
+
+  resources :imports
+
   resources :advertisers do
     resource :publisher
   end

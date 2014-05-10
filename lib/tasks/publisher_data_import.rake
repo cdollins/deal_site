@@ -11,7 +11,7 @@ namespace :publisher do
       mapper = ENV['MAPPER'].constantize
     end
     
-    Importer.import(ENV['PUBLISHER'], File.new(ENV['IMPORT']), mapper)
+    Import.import(ENV['PUBLISHER'], File.new(ENV['IMPORT']), mapper)
   end
   
 end

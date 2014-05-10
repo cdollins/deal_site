@@ -25,13 +25,13 @@ END
   end
 
   test "publisher has correct name" do
-    Importer.import(PUBLISHER_NAME, TESTFILE, TestImportMap)
+    Import.import(PUBLISHER_NAME, TESTFILE, TestImportMap)
     publisher = Publisher.first
     assert_equal PUBLISHER_NAME, publisher.name
   end
 
   test "import process imports all records" do
-    Importer.import(PUBLISHER_NAME, TESTFILE, TestImportMap)
+    Import.import(PUBLISHER_NAME, TESTFILE, TestImportMap)
     assert_equal 1, Publisher.all.count
     assert_equal 2, Advertiser.all.count
     assert_equal 2, Deal.all.count
@@ -42,13 +42,13 @@ END
   
   
   test "publisher 2 has correct name" do
-    Importer.import(PUBLISHER_NAME_2, TESTFILE_2, PmImportMap)
+    Import.import(PUBLISHER_NAME_2, TESTFILE_2, PmImportMap)
     publisher = Publisher.first
     assert_equal PUBLISHER_NAME_2, publisher.name
   end
 
   test "import process imports all records for different import map" do
-    Importer.import(PUBLISHER_NAME_2, TESTFILE_2, PmImportMap)
+    Import.import(PUBLISHER_NAME_2, TESTFILE_2, PmImportMap)
     assert_equal 1, Publisher.all.count
     assert_equal 2, Advertiser.all.count
     assert_equal 2, Deal.all.count

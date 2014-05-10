@@ -1,0 +1,27 @@
+<h1>Listing import_errors</h1>
+
+<table>
+  <tr>
+    <th>Data</th>
+    <th>Error</th>
+    <th>Import</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @import_errors.each do |import_error| %>
+  <tr>
+    <td><%= import_error.data %></td>
+    <td><%= import_error.error %></td>
+    <td><%= import_error.import_id %></td>
+    <td><%= link_to 'Show', import_error %></td>
+    <td><%= link_to 'Edit', edit_import_error_path(import_error) %></td>
+    <td><%= link_to 'Destroy', import_error, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Import error', new_import_error_path %>
