@@ -2,7 +2,8 @@ class ImportsController < ApplicationController
   # GET /imports
   # GET /imports.json
   def index
-    @imports = Import.all
+    @publisher = Publisher.find(params[:publisher_id])
+    @imports = @publisher.imports
 
     respond_to do |format|
       format.html # index.html.erb

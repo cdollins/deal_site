@@ -3,7 +3,7 @@ class Import < ActiveRecord::Base
   has_many :import_errors
   
   def import(import_data)
-    mapper = import_map.new
+    mapper = import_map.constantize.new
     eat_header = true
     headers = ""
     import_data.each_line do |row|

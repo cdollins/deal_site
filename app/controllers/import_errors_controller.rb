@@ -2,7 +2,8 @@ class ImportErrorsController < ApplicationController
   # GET /import_errors
   # GET /import_errors.json
   def index
-    @import_errors = ImportError.all
+    @import = Import.find(params[:import_id])
+    @import_errors = @import.import_errors
 
     respond_to do |format|
       format.html # index.html.erb

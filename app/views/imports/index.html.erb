@@ -4,6 +4,7 @@
   <tr>
     <th>Import map</th>
     <th>Publisher</th>
+	<th>Errors</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +14,7 @@
   <tr>
     <td><%= import.import_map %></td>
     <td><%= import.publisher_id %></td>
+	<td><%= link_to 'Errors', import_import_errors_path(import) %></td>
     <td><%= link_to 'Show', import %></td>
     <td><%= link_to 'Edit', edit_import_path(import) %></td>
     <td><%= link_to 'Destroy', import, confirm: 'Are you sure?', method: :delete %></td>
