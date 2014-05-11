@@ -19,4 +19,10 @@ FactoryGirl.define do
   factory :publisher do
     sequence(:name) { |n| "Publisher #{n}" }
   end
+  
+  factory :issue do
+    publisher
+    deal
+    message "End at cannot be before deal start_at"
+  end
 end
