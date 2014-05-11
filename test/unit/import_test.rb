@@ -75,7 +75,11 @@ END
     assert_equal 2, Advertiser.all.count
     assert_equal 2, Deal.all.count
     assert_equal 1, Import.all.count
-    assert_equal 1, Issue.all.count    
+    assert_equal 1, Issue.all.count
+    
+    deal = Deal.first
+    assert deal.update_attributes(end_at: deal.start_at + 1.day)
+    assert_equal 0, Issue.all.count
   end
 
   #test "end_date should be 2 days after start_date if end_date is nil" do
