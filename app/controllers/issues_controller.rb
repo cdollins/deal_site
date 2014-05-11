@@ -2,7 +2,8 @@ class IssuesController < ApplicationController
   # GET /issues
   # GET /issues.json
   def index
-    @issues = Issue.all
+    @publisher = Publisher.find(params[:publisher_id])
+    @issues = @publisher.issues
 
     respond_to do |format|
       format.html # index.html.erb

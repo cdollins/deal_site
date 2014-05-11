@@ -5,9 +5,11 @@ class Deal < ActiveRecord::Base
   validates_presence_of :advertiser, :value, :price, :description, :start_at, :end_at
   validate :end_at_can_not_be_before_start_at
   
+  after_save {issues.map(&:delete)}
+    
   def end_at_can_not_be_before_start_at
     if end_at < start_at
-      errors.add(:end_at, "Offer can not expire before it begins.")
+      errors.add(:end_at, "cannot be before deal start_at")
     end
   end
 

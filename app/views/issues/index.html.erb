@@ -1,6 +1,6 @@
 <h1>Listing issues</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
     <th>Publisher</th>
     <th>Import</th>
@@ -13,9 +13,9 @@
 
 <% @issues.each do |issue| %>
   <tr>
-    <td><%= issue.publisher_id %></td>
+    <td><%= issue.publisher.name %></td>
     <td><%= issue.import_id %></td>
-    <td><%= issue.deal_id %></td>
+    <td><%= link_to issue.deal.description, edit_deal_path(issue.deal) %></td>
     <td><%= issue.message %></td>
     <td><%= link_to 'Show', issue %></td>
     <td><%= link_to 'Edit', edit_issue_path(issue) %></td>

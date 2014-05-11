@@ -1,5 +1,9 @@
 DealSite::Application.routes.draw do
-  resources :issues
+  resources :issues do
+    resource :import
+    resource :publisher
+    resources :deal
+  end
 
   resources :import_errors do
     resource :import
@@ -21,6 +25,7 @@ DealSite::Application.routes.draw do
   resources :publishers do
     resources :advertisers
     resources :imports
+    resources :issues
   end
 
   match '/' => 'publishers#index', :as => :root
