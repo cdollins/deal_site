@@ -24,7 +24,7 @@ class Import < ActiveRecord::Base
         end
       rescue => e
         ImportError.create(data: row, error: e.to_s, import: self)
-        p "Errror Importing row: #{row} " + e.to_s
+        logger.error "Errror Importing row: #{row} " + e.to_s
       end
     end
   end
