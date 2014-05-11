@@ -4,7 +4,9 @@ class PublishersControllerTest < ActionController::TestCase
   test "index" do
     FactoryGirl.create_list(:publisher, 3)
     get :index
-    assert_equal 3, assigns(:publishers).size, "@publishers"
+    assert_response :success
+    assert_equal 3, assigns(:publishers).size, "@publishers"    
+    assert_select "", text: ""
   end
 
   test "edit" do

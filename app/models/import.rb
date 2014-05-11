@@ -18,7 +18,7 @@ class Import < ActiveRecord::Base
           deal = Deal.new(options.merge(advertiser: advertiser))
           deal.save(validate: false)
           if !deal.valid?
-            Issue.create(deal: deal, publisher: publisher, import: self)
+            Issue.create(deal: deal, publisher: publisher, import: self, message: deal.errors.full_messages.join(", "))
           end
 
         end

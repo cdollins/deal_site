@@ -7,7 +7,7 @@ class Deal < ActiveRecord::Base
   
   def end_at_can_not_be_before_start_at
     if end_at < start_at
-      errors.add(:end_at, "Offer can not expire before it begins.")
+      errors.add(:end_at, "cannot be before deal start_at")
     end
   end
 
