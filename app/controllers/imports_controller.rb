@@ -25,6 +25,7 @@ class ImportsController < ApplicationController
   # GET /imports/new
   # GET /imports/new.json
   def new
+    @publisher = Publisher.find(params[:publisher_id])
     @import = Import.new
 
     respond_to do |format|
@@ -41,17 +42,16 @@ class ImportsController < ApplicationController
   # POST /imports
   # POST /imports.json
   def create
+    @publisher = Publisher.find(params[:publisher_id])
     @import = Import.new(params[:import])
+    @import.publisher = @publisher
 
-    respond_to do |format|
-      if @import.save
-        format.html { redirect_to @import, notice: 'Import was successfully created.' }
-        format.json { render json: @import, status: :created, location: @import }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @import.errors, status: :unprocessable_entity }
-      end
+    if @import.save
+      redirect_to edit_import_path(@import), notice: 'Import was successfully created.'
+    else
+      render action: "new"
     end
+
   end
 
   # PUT /imports/1
@@ -59,14 +59,10 @@ class ImportsController < ApplicationController
   def update
     @import = Import.find(params[:id])
 
-    respond_to do |format|
-      if @import.update_attributes(params[:import])
-        format.html { redirect_to @import, notice: 'Import was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @import.errors, status: :unprocessable_entity }
-      end
+    if @import.update_attributes(params[:import])
+      redirect_to edit_import_path(@import), notice: 'Import was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 

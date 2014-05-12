@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140510232946) do
+ActiveRecord::Schema.define(:version => 20140512213800) do
 
   create_table "advertisers", :force => true do |t|
     t.string   "name"
@@ -42,11 +42,24 @@ ActiveRecord::Schema.define(:version => 20140510232946) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "import_maps", :force => true do |t|
+    t.string   "field_transforms"
+    t.string   "header_transforms"
+    t.string   "header_parse_regex"
+    t.string   "field_parse_regex"
+    t.integer  "import_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
   create_table "imports", :force => true do |t|
-    t.string   "import_map"
     t.integer  "publisher_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "field_transforms"
+    t.string   "header_transforms"
+    t.string   "header_parse_regex"
+    t.string   "field_parse_regex"
   end
 
   create_table "issues", :force => true do |t|

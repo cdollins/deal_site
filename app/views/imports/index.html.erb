@@ -2,20 +2,16 @@
 
 <table class="publishers table table-striped">
   <tr>
-    <th>Import map</th>
     <th>Publisher</th>
 	<th>Errors</th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @imports.each do |import| %>
   <tr>
-    <td><%= import.import_map %></td>
     <td><%= import.publisher_id %></td>
-	<td><%= link_to 'Errors', import_import_errors_path(import) %></td>
-    <td><%= link_to 'Show', import %></td>
+	<td><%= link_to "Errors (#{import.errors.size})", import_import_errors_path(import) %></td>
     <td><%= link_to 'Edit', edit_import_path(import) %></td>
     <td><%= link_to 'Destroy', import, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
@@ -24,4 +20,4 @@
 
 <br />
 
-<%= link_to 'New Import', new_import_path %>
+<%= link_to 'New Import', new_publisher_import_path(@publisher) %>
