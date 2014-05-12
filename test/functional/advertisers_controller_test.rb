@@ -22,7 +22,7 @@ class AdvertisersControllerTest < ActionController::TestCase
   test "should create advertiser" do
     publisher = FactoryGirl.create(:publisher)
     assert_difference('Advertiser.count') do
-      post :create, advertiser: FactoryGirl.attributes_for(:advertiser, publisher_id: publisher.id)
+      post :create, advertiser: FactoryGirl.attributes_for(:advertiser), publisher_id: publisher.id
     end
 
     assert_redirected_to edit_advertiser_path(assigns(:advertiser))

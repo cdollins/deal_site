@@ -26,9 +26,7 @@ class AdvertisersController < ApplicationController
   end
 
   def update
-    @publisher = Publisher.find(params[:publisher_id])
     @advertiser = Advertiser.find(params[:id])
-    @advertiser.publisher = @publisher
 
     if @advertiser.update_attributes(params[:advertiser])
       redirect_to edit_advertiser_path(@advertiser), notice: 'Advertiser was successfully updated.'
