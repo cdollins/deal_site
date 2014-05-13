@@ -24,4 +24,10 @@ class DealTest < ActiveSupport::TestCase
     Timecop.travel(now + 1.week)
     assert deal.over?, "Deal should not be over"
   end
+  
+  test "price should be less than value" do
+    deal = FactoryGirl.build(:deal)
+    deal.price = deal.value + 1
+    assert !deal.valid?
+  end
 end
