@@ -1,4 +1,4 @@
-<%= form_for(@advertiser) do |f| %>
+<%= form_for([@publisher, @advertiser]) do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.submit %>

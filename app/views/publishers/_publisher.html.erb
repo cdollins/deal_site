@@ -1,6 +1,8 @@
 <tr>
   <td><%= publisher.name %></td>
   <td><%= publisher.theme %></td>
-  <td><%= link_to "Advertisers", publisher_advertisers_path(publisher) %></td>
+  <td><%= link_to "Advertisers (#{publisher.advertisers.count})", publisher_advertisers_path(publisher) %></td>
+  <td><%= link_to "Imports (#{publisher.imports.count})", publisher_imports_path(publisher) %></td>
+  <td><%= link_to "Issues (#{publisher.issues.count})", publisher_issues_path(publisher) %></td>
   <td><%= link_to "Edit", edit_publisher_path(publisher) %></td>
 </tr>

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  import_map: MyString
+  publisher_id: 1
+
+two:
+  import_map: MyString
+  publisher_id: 1

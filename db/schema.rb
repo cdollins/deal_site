@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120219191639) do
+ActiveRecord::Schema.define(:version => 20140512213800) do
 
   create_table "advertisers", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20120219191639) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  add_index "advertisers", ["publisher_id"], :name => "index_advertisers_on_publisher_id"
 
   create_table "deals", :force => true do |t|
     t.string   "proposition"
@@ -32,6 +34,43 @@ ActiveRecord::Schema.define(:version => 20120219191639) do
     t.boolean  "sold_out"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "import_errors", :force => true do |t|
+    t.string   "data"
+    t.string   "error"
+    t.integer  "import_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "import_maps", :force => true do |t|
+    t.string   "field_transforms"
+    t.string   "header_transforms"
+    t.string   "header_parse_regex"
+    t.string   "field_parse_regex"
+    t.integer  "import_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "imports", :force => true do |t|
+    t.integer  "publisher_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "field_transforms"
+    t.string   "header_transforms"
+    t.string   "header_parse_regex"
+    t.string   "field_parse_regex"
+  end
+
+  create_table "issues", :force => true do |t|
+    t.integer  "publisher_id"
+    t.integer  "import_id"
+    t.integer  "deal_id"
+    t.string   "message"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "publishers", :force => true do |t|

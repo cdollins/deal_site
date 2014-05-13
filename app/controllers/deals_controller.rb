@@ -3,7 +3,7 @@ class DealsController < ApplicationController
   before_filter :set_view_paths, only: :show
 
   def index
-    @deals = Deal.all
+    @deals = Deal.includes(advertiser: [:publisher]).all
   end
 
   def show
@@ -49,6 +49,10 @@ class DealsController < ApplicationController
   end
 
   def set_view_paths
-    prepend_view_path "app/themes/#{@deal.advertiser.publisher.theme}/views"
+    if @deal.advertiser.publisher.theme =~ /^entertainment/
+      prepend_view_path "app/themes/entertainment/views" 
+    else
+      prepend_view_path "app/themes/#{@deal.advertiser.publisher.theme}/views"
+    end
   end
 end

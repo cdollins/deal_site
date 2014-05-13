@@ -1,0 +1,23 @@
+<h1>Listing imports</h1>
+
+<table class="publishers table table-striped">
+  <tr>
+    <th>Publisher</th>
+	<th>Errors</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @imports.each do |import| %>
+  <tr>
+    <td><%= import.publisher_id %></td>
+	<td><%= link_to "Errors (#{import.errors.size})", import_import_errors_path(import) %></td>
+    <td><%= link_to 'Edit', edit_import_path(import) %></td>
+    <td><%= link_to 'Destroy', import, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Import', new_publisher_import_path(@publisher) %>

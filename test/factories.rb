@@ -19,4 +19,23 @@ FactoryGirl.define do
   factory :publisher do
     sequence(:name) { |n| "Publisher #{n}" }
   end
+  
+  factory :issue do
+    publisher
+    deal
+    message "End at cannot be before deal start_at"
+  end
+  
+  factory :import do
+    publisher
+    field_transforms '{
+          name: ->(x) {x},
+          start_at: ->(x) { Date.strptime(x, "%m/%d/%Y") },
+          end_at: ->(x) { Date.strptime(x, "%m/%d/%Y") },
+          description: ->(x) {x},
+          price: ->(x) {x},
+          value: ->(x) {x}
+        }'
+  end
+    
 end
