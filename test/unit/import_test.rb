@@ -114,5 +114,8 @@ END
   #  deal = advertiser.deals.first
   #  assert_equal deal.end_at.to_date - deal.start_at.to_date, 2
   #end
+  
+  test "when a import field is changed that the update is applied" do
+  end
 
 end
