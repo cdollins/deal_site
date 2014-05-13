@@ -14,7 +14,9 @@ class AdvertisersController < ApplicationController
   end
 
   def create
+    @publisher = Publisher.find(params[:publisher_id])
     @advertiser = Advertiser.new(params[:advertiser])
+    @advertiser.publisher = @publisher
 
     if @advertiser.save
       redirect_to edit_advertiser_path(@advertiser), notice: 'Advertiser was successfully created.'

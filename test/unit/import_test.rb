@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ImportServiceTest < ActiveSupport::TestCase
+class ImportTest < ActiveSupport::TestCase
 
 PUBLISHER_NAME = 'Daily Planet'
 
@@ -31,13 +31,14 @@ END
   end
 
   test "publisher has correct name" do
-    Import.import(PUBLISHER_NAME, TESTFILE, "TestImportMap")
+    Import.import(PUBLISHER_NAME, TESTFILE)
     publisher = Publisher.first
     assert_equal PUBLISHER_NAME, publisher.name
   end
 
   test "import process imports all records" do
-    Import.import(PUBLISHER_NAME, TESTFILE, "TestImportMap")
+    import = FactoryGirl.create(:import)
+    import.import(TESTFILE)
     assert_equal 1, Publisher.all.count
     assert_equal 2, Advertiser.all.count
     assert_equal 2, Deal.all.count
@@ -50,13 +51,27 @@ END
   
   
   test "publisher 2 has correct name" do
-    Import.import(PUBLISHER_NAME_2, TESTFILE_2, "PmImportMap")
+    Import.import(PUBLISHER_NAME_2, TESTFILE_2)
     publisher = Publisher.first
     assert_equal PUBLISHER_NAME_2, publisher.name
   end
 
   test "import process imports all records for different import map" do
-    Import.import(PUBLISHER_NAME_2, TESTFILE_2, "PmImportMap")
+    import = FactoryGirl.create(:import,
+    header_transforms: { "Publisher" => :name, "Start" => :start_at, "finish" => :end_at, "Name" => :description, "cost" => :price, "margin" => :value },
+    field_transforms: '{
+          name: ->(x) {x},
+          start_at: ->(x) { Date.strptime(x, "%m-%d-%Y") },
+          end_at: ->(x) { Date.strptime(x, "%m-%d-%Y") },
+          description: ->(x) {x},
+          price: ->(x) {x},
+          value: ->(x) {x}
+        }',
+        header_parse_regex: /,/,
+        field_parse_regex: /(.+),(.+),(.+),(.+),(.+),(.+)/
+    )
+    
+    import.import(TESTFILE_2)
     assert_equal 1, Publisher.all.count
     assert_equal 2, Advertiser.all.count
     assert_equal 2, Deal.all.count
@@ -68,9 +83,21 @@ END
   end
   
   test "publisher 3 has validation error" do
-    Import.import(PUBLSIHER_NAME_3, TESTFILE_3, "PmImportMap")
-    publisher = Publisher.first
-    assert_equal PUBLSIHER_NAME_3, publisher.name
+    import = FactoryGirl.create(:import, 
+    header_transforms: { "Publisher" => :name, "Start" => :start_at, "finish" => :end_at, "Name" => :description, "cost" => :price, "margin" => :value },
+    field_transforms: '{
+          name: ->(x) {x},
+          start_at: ->(x) { Date.strptime(x, "%m-%d-%Y") },
+          end_at: ->(x) { Date.strptime(x, "%m-%d-%Y") },
+          description: ->(x) {x},
+          price: ->(x) {x},
+          value: ->(x) {x}
+        }',
+        header_parse_regex: /,/,
+        field_parse_regex: /(.+),(.+),(.+),(.+),(.+),(.+)/
+    )
+    import.import(TESTFILE_3)
+
     assert_equal 1, Publisher.all.count
     assert_equal 2, Advertiser.all.count
     assert_equal 2, Deal.all.count
