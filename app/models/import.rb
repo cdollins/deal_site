@@ -37,7 +37,7 @@ class Import < ActiveRecord::Base
   end
   
   def init
-    self.field_transforms =
+    self.field_transforms ||=
     "{
       name: ->(x) {x},
       start_at: ->(x) {x},
@@ -47,7 +47,7 @@ class Import < ActiveRecord::Base
       value: ->(x) {x}
     }"
   
-    self.header_transforms = 
+    self.header_transforms ||= 
     {
       "Merchant" => :name,
       "Date" => :start_at,
@@ -56,8 +56,8 @@ class Import < ActiveRecord::Base
       "Price" => :price,
       "Value" => :value
     }
-    self.header_parse_regex = /\s+/
-    self.field_parse_regex = /(.+)\s(\d+\/\d+\/\d+)\s+(\d+\/\d+\/\d+)\s+(.+)\s+(\d+)\s+(\d+)/
+    self.header_parse_regex ||= /\s+/
+    self.field_parse_regex ||= /(.+)\s(\d+\/\d+\/\d+)\s+(\d+\/\d+\/\d+)\s+(.+)\s+(\d+)\s+(\d+)/
   end
   
   def header_row_parser(header_string)
