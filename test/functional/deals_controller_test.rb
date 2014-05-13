@@ -80,7 +80,7 @@ class DealsControllerTest < ActionController::TestCase
 
   test "should update deal" do
     deal = FactoryGirl.create(:deal)
-    put :update, id: deal, deal: { price: 30 }
+    put :update, id: deal, deal: { price: 2 }
     assert_redirected_to edit_deal_path(deal)
   end
 
